@@ -13,6 +13,7 @@
 class TrieNode {
 public:
     int key;
+    bool isLeaf; // Property indicated by if node is at bottom of tree (it may still have a left and right)
     TrieNode* left;
     TrieNode* right;
     
@@ -24,14 +25,8 @@ public:
      * @param left Left child.
      * @param right Right child.
      */
-    TrieNode(int key, TrieNode* left = nullptr, TrieNode* right = nullptr);
+    TrieNode(int key, TrieNode* left = nullptr, TrieNode* right = nullptr, bool isLeaf = true);
     
-    /**
-     * Checks if the current node is a leaf node.
-     *
-     * @return True if no left or right child.
-     */
-    bool isLeaf();
     
     /**
      * Method to deep copy the object.

@@ -10,8 +10,9 @@
 #include "TrieNode.hpp"
 
 
-TrieNode::TrieNode(int key, TrieNode* left, TrieNode* right) {
+TrieNode::TrieNode(int key, TrieNode* left, TrieNode* right, bool isLeaf) {
     TrieNode::key = key;
+    TrieNode::isLeaf = isLeaf;
     TrieNode::left = left;
     TrieNode::right = right;
 }
@@ -54,18 +55,3 @@ void TrieNode::prettyPrint() {
             std::cout << prefix;
     }
 }
-
-bool TrieNode::isLeaf() {
-    return left == nullptr && right == nullptr;
-}
-
-
-//TrieNode* TrieNode::deepCopy() {
-//    //  ~> Create a new TrieNode consisting of the same data with deep copies of children
-//    
-//    TrieNode* rootCopy = new TrieNode(getKey(), nullptr, nullptr);
-//    
-//    
-//    return rootCopy;
-//}
-
