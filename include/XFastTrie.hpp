@@ -38,7 +38,7 @@ public:
     
     // At each level there is a hash table that holds all the nodes for
     // that level.
-    // TODO: Use dynamic-perfect hashing or cuckoo hashing.
+    // TODO: Use dynamic-perfect hashing such as cuckoo hashing or hopscotch hashing.
     std::vector<std::unordered_map<int, TrieNode*>> levelSearchStructure;
     
     static int numberOfBitsInWord(int word);
@@ -116,7 +116,7 @@ public:
     /**
      * Visualize the tree to the console.
      */
-    void show();
+    void prettyPrint();
     
     ~XFastTrie();
 };

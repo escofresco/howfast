@@ -18,14 +18,14 @@ TrieNode::TrieNode(int key, TrieNode* left, TrieNode* right, bool isLeaf) {
 }
 
 void trimLeftTrailingSpaces(std::string &input) {
-    // ~> Taken from Leetcode's Binary Tree playground <~ //
+    // ~> Taken from Leetcode's Binary Tree playground snippet <~ //
     input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
         return !isspace(ch);
     }));
 }
 
 void trimRightTrailingSpaces(std::string &input) {
-    // ~> Taken from Leetcode's Binary Tree playground <~ //
+    // ~> Taken from Leetcode's Binary Tree playground snippet <~ //
     input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
         return !isspace(ch);
     }).base(), input.end());
