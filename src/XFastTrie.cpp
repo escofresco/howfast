@@ -89,10 +89,6 @@ TrieNode* XFastTrie::nearestLeaf(int key) {
     return nullptr;
 }
 
-const std::vector<std::unordered_map<int, TrieNode*>>& XFastTrie::getLevelSearchStructure() const {
-    return levelSearchStructure;
-}
-
 void XFastTrie::show() {
 
 }

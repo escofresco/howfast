@@ -114,13 +114,6 @@ public:
      */
     
     /**
-     * Getter for level search structure.
-     *
-     * @return level search structure.
-     */
-    const std::vector<std::unordered_map<int, TrieNode*>>& getLevelSearchStructure() const;
-    
-    /**
      * Visualize the tree to the console.
      */
     void show();
