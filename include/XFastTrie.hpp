@@ -121,11 +121,6 @@ public:
     const std::vector<std::unordered_map<int, TrieNode*>>& getLevelSearchStructure() const;
     
     /**
-     * Setter for level search structure.
-     */
-    void setLevelSearchStructure(std::vector<std::unordered_map<int, TrieNode*>> levelSearchStructure);
-    
-    /**
      * Visualize the tree to the console.
      */
     void show();

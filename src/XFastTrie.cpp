@@ -18,10 +18,7 @@
 XFastTrie::XFastTrie(int universeSize) {
     XFastTrie::universeSize = universeSize;
     levelSearchStructure.assign(wordSize + 1, std::unordered_map<int, TrieNode*>());
-//    std::vector<std::unordered_map<int, TrieNode*>> lss;
-//    lss.assign(wordSize + 1, std::unordered_map<int, TrieNode*>());
     levelSearchStructure[0][0] = new TrieNode(NULL);
-//    setLevelSearchStructure(lss);
 }
 
 
@@ -94,17 +91,6 @@ TrieNode* XFastTrie::nearestLeaf(int key) {
 
 const std::vector<std::unordered_map<int, TrieNode*>>& XFastTrie::getLevelSearchStructure() const {
     return levelSearchStructure;
-}
-
-void XFastTrie::setLevelSearchStructure(std::vector<std::unordered_map<int, TrieNode*>> levelSearchStructure) {
-//    XFastTrie::levelSearchStructure.clear();
-//    std::vector<std::unordered_map<int, TrieNode*>>::iterator it;
-//
-//    for (it = levelSearchStructure.begin(); it != levelSearchStructure.end(); it++) {
-//        XFastTrie::levelSearchStructure.push_back(std::unordered_map<int, TrieNode*>(it -> begin(),
-//                                                                                     it -> end()));
-//    }
-    XFastTrie::levelSearchStructure = levelSearchStructure;
 }
 
 void XFastTrie::show() {
