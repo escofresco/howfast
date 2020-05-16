@@ -14,31 +14,7 @@
 
 
 void testXFastInit() {
-//    XFastTrie* emptyTrie = new XFastTrie(0);
-//    
-//    assert(emptyTrie -> getUniverseSize() == 0);
-//    assert(emptyTrie -> getWordSize() == 0);
-//    assert(emptyTrie -> getLevelSearchStructure().size() == 1);
-//    assert(emptyTrie -> getLevelSearchStructure()[0].size() == 1);
-//    assert(emptyTrie -> getLevelSearchStructure()[0].at(0) -> getKey() == 0);
-//    
-//    XFastTrie* tinyTrie = new XFastTrie(8);
-//    
-//    assert(tinyTrie -> getUniverseSize() == 8);
-//    assert(tinyTrie -> getWordSize() == 4);
-//    assert(tinyTrie -> getLevelSearchStructure().size() == 5);
-//    assert(tinyTrie -> getLevelSearchStructure()[0].size() == 1);
-//    assert(tinyTrie -> getLevelSearchStructure()[0].at(0) -> getKey() == 0);
-//    
-//    XFastTrie* bigTrie = new XFastTrie(256);
-//    
-//    assert(bigTrie -> getUniverseSize() == 256);
-//    assert(bigTrie -> getWordSize() == 9);
-//    assert(bigTrie -> getLevelSearchStructure().size() == 10);
-//    assert(bigTrie -> getLevelSearchStructure()[0].size() == 1);
-//    assert(bigTrie -> getLevelSearchStructure()[0].at(0) -> getKey() == 0);
-    
-    
+
 }
 
 void testXFastFind() {
@@ -137,9 +113,16 @@ void testXFastClosestAncestor() {
 //    assert(closestAncestorOf8.second -> getKey() == 1);
 }
 
+void testNumberOfBitsInWord() {
+    assert(XFastTrie::numberOfBitsInWord(0) == 0);
+    assert(XFastTrie::numberOfBitsInWord(1) == 1);
+    assert(XFastTrie::numberOfBitsInWord(std::stoi("101", 0, 2)) == 3);
+}
+
 
 void runXFastTests() {
     testXFastInit();
+    testNumberOfBitsInWord();
     testXFastFind();
     testXFastPredecessor();
     testXFastSuccessor();
