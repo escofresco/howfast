@@ -25,7 +25,7 @@
  * Delete O(log u) amortized average
  */
 class XFastTrie {
-private:
+public:
     
     // The largest value that can be stored in tree (universe)
     int universeSize;
@@ -41,36 +41,15 @@ private:
     // TODO: Use dynamic-perfect hashing or cuckoo hashing.
     std::vector<std::unordered_map<int, TrieNode*>> levelSearchStructure;
     
-    int numberOfBitsInWord(int word);
+    static int numberOfBitsInWord(int word);
     
-public:
     /**
      * Constructs trie to handle integers with an upper bound of U.
      *
      * @param U Universe size.
      */
     XFastTrie(int U);
-    
-    /**
-     * Returns the size of universe.
-     *
-     * @return Universe size.
-     */
-    int getUniverseSize();
-    
-    /**
-     * Returns the maximum word size that the tree can store.
-     *
-     * @return Word size.
-     */
-    int getWordSize();
-    
-    /**
-     * Calculates the maximum number of bits that the tree can store and sets that to wordSize.
-     * @param universeSize The upper bound on the number of values that the tree can hold.
-     */
-    void setWordSize(int universeSize);
-    
+
     /**
      * Find the value associated with the given key by looking it up in the level search structure.
      * Time Complexity: O(1)

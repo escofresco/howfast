@@ -17,7 +17,6 @@
 
 XFastTrie::XFastTrie(int universeSize) {
     XFastTrie::universeSize = universeSize;
-    setWordSize(universeSize);
     levelSearchStructure.assign(wordSize + 1, std::unordered_map<int, TrieNode*>());
 //    std::vector<std::unordered_map<int, TrieNode*>> lss;
 //    lss.assign(wordSize + 1, std::unordered_map<int, TrieNode*>());
@@ -25,17 +24,6 @@ XFastTrie::XFastTrie(int universeSize) {
 //    setLevelSearchStructure(lss);
 }
 
-int XFastTrie::getUniverseSize() {
-    return universeSize;
-}
-
-int XFastTrie::getWordSize() {
-    return wordSize;
-}
-
-void XFastTrie::setWordSize(int universeSize) {
-    wordSize = numberOfBitsInWord(universeSize);
-}
 
 int XFastTrie::numberOfBitsInWord(int word) {
     // Calculate number of bits in word
