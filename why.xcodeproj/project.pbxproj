@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF7EFEE9246A8E1100C9FC00 /* XFastUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF7EFEE7246A8E1100C9FC00 /* XFastUnitTest.cpp */; };
+		EF7EFEEF246A98B500C9FC00 /* XFastTrie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF7EFEED246A98B500C9FC00 /* XFastTrie.cpp */; };
+		EF7EFEF2246A98BD00C9FC00 /* YFastTrie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF7EFEF0246A98BD00C9FC00 /* YFastTrie.cpp */; };
+		EF7EFEF5246A98C900C9FC00 /* TrieNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF7EFEF3246A98C900C9FC00 /* TrieNode.cpp */; };
+		EF7EFEF8246A98EE00C9FC00 /* TrieNodeUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF7EFEF6246A98EE00C9FC00 /* TrieNodeUnitTest.cpp */; };
 		EF92CE99246A76CB007E8436 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF92CE98246A76CB007E8436 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EF7EFEE7246A8E1100C9FC00 /* XFastUnitTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XFastUnitTest.cpp; sourceTree = "<group>"; };
+		EF7EFEE8246A8E1100C9FC00 /* XFastUnitTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XFastUnitTest.hpp; sourceTree = "<group>"; };
+		EF7EFEED246A98B500C9FC00 /* XFastTrie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XFastTrie.cpp; sourceTree = "<group>"; };
+		EF7EFEEE246A98B500C9FC00 /* XFastTrie.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XFastTrie.hpp; sourceTree = "<group>"; };
+		EF7EFEF0246A98BD00C9FC00 /* YFastTrie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = YFastTrie.cpp; sourceTree = "<group>"; };
+		EF7EFEF1246A98BD00C9FC00 /* YFastTrie.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = YFastTrie.hpp; sourceTree = "<group>"; };
+		EF7EFEF3246A98C900C9FC00 /* TrieNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrieNode.cpp; sourceTree = "<group>"; };
+		EF7EFEF4246A98C900C9FC00 /* TrieNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrieNode.hpp; sourceTree = "<group>"; };
+		EF7EFEF6246A98EE00C9FC00 /* TrieNodeUnitTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrieNodeUnitTest.cpp; sourceTree = "<group>"; };
+		EF7EFEF7246A98EE00C9FC00 /* TrieNodeUnitTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrieNodeUnitTest.hpp; sourceTree = "<group>"; };
 		EF92CE95246A76CB007E8436 /* why */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = why; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF92CE98246A76CB007E8436 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +73,16 @@
 			isa = PBXGroup;
 			children = (
 				EF92CE98246A76CB007E8436 /* main.cpp */,
+				EF7EFEF3246A98C900C9FC00 /* TrieNode.cpp */,
+				EF7EFEF4246A98C900C9FC00 /* TrieNode.hpp */,
+				EF7EFEF0246A98BD00C9FC00 /* YFastTrie.cpp */,
+				EF7EFEF1246A98BD00C9FC00 /* YFastTrie.hpp */,
+				EF7EFEED246A98B500C9FC00 /* XFastTrie.cpp */,
+				EF7EFEEE246A98B500C9FC00 /* XFastTrie.hpp */,
+				EF7EFEF6246A98EE00C9FC00 /* TrieNodeUnitTest.cpp */,
+				EF7EFEF7246A98EE00C9FC00 /* TrieNodeUnitTest.hpp */,
+				EF7EFEE7246A8E1100C9FC00 /* XFastUnitTest.cpp */,
+				EF7EFEE8246A8E1100C9FC00 /* XFastUnitTest.hpp */,
 			);
 			path = why;
 			sourceTree = "<group>";
@@ -119,7 +144,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF7EFEF2246A98BD00C9FC00 /* YFastTrie.cpp in Sources */,
+				EF7EFEF8246A98EE00C9FC00 /* TrieNodeUnitTest.cpp in Sources */,
+				EF7EFEEF246A98B500C9FC00 /* XFastTrie.cpp in Sources */,
+				EF7EFEE9246A8E1100C9FC00 /* XFastUnitTest.cpp in Sources */,
 				EF92CE99246A76CB007E8436 /* main.cpp in Sources */,
+				EF7EFEF5246A98C900C9FC00 /* TrieNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

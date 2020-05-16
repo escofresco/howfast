@@ -7,9 +7,16 @@
 //
 
 #include <iostream>
+#include "TrieNodeUnitTest.hpp"
+#include "XFastUnitTest.hpp"
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
+    runNodeTests();
+    //runXFastTests();
+    
+    
+    
     return 0;
 }
