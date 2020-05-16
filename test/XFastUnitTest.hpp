@@ -13,5 +13,4 @@
 /**
  * Execute unit tests for X-Fast Trie.
  */
-void runXFastTests();
 #endif /* XFastUnitTest_hpp */
