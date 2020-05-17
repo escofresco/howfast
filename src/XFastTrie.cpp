@@ -41,12 +41,26 @@ TrieNode* XFastTrie::find(int key) {
     return levelSearchStructure[0][key];
 }
 
-TrieNode* XFastTrie::successor(int key) {
-    return nullptr;
+TrieNode* XFastTrie::predecessor(int key) {
+    TrieNode* nearestLeafPredecessor = nearestLeaf(key);
+    
+    if (!nearestLeafPredecessor)
+        return nullptr;
+    
+    if (nearestLeafPredecessor -> key > key)
+        return nearestLeafPredecessor -> left;
+    return nearestLeafPredecessor;
 }
 
-TrieNode* XFastTrie::predecessor(int key) {
-    return nullptr;
+TrieNode* XFastTrie::successor(int key) {
+    TrieNode* nearestLeafSuccessor = nearestLeaf(key);
+    
+    if (!nearestLeafSuccessor)
+        return nullptr;
+    
+    if (nearestLeafSuccessor -> key < key)
+        return nearestLeafSuccessor -> right;
+    return nearestLeafSuccessor;
 }
 
 void XFastTrie::insert(int key) {
@@ -55,7 +69,7 @@ void XFastTrie::insert(int key) {
 void XFastTrie::deleteKey(int key) {
 }
 
-std::pair<int, TrieNode*> XFastTrie::closestAncestor(int key) {
+std::pair<int, TrieNode*> XFastTrie::nearestAncestor(int key) {
     if (levelSearchStructure.empty())
         return std::make_pair(NULL, nullptr);
     TrieNode* ancestorNode = root;
@@ -85,7 +99,37 @@ std::pair<int, TrieNode*> XFastTrie::closestAncestor(int key) {
 }
 
 TrieNode* XFastTrie::nearestLeaf(int key) {
-    return nullptr;
+    std::pair<int, TrieNode*> levelNodePair = nearestAncestor(key);
+    int level = levelNodePair.first;
+    TrieNode* ancestor = levelNodePair.second;
+    
+    if (ancestor -> isLeaf)
+        // Ancestor of key is leaf because key existing exactly in tree
+        return ancestor;
+    
+    // Direction is left if key was in the right subtree, else direction is right
+    int direction = key >> (wordSize - level - 2) & 1;
+    
+    // Descendent will either be the largest value in the left subtree or smallest
+    // value in the right subtree
+    TrieNode* descendant = direction == 0 ? ancestor -> left : ancestor -> right;
+    
+    if (descendant == nullptr) 
+        // This happens when there's nothing left or right of ancestor
+        return nullptr;
+    
+    // ~> Check that descendent is the nearest leaf. It should definitely be a leaf, but
+    //    we may need to move left or right by one node in the doubly-linked list of leaves
+    //    to get the nearest one.
+    // Check that there isn't a node to the left or right of descendent that is closer
+    // to key
+    TrieNode* candidate = direction == 0 ? descendant -> left : descendant -> right;
+    
+    // Descendant is the nearest leaf if candidate is empty or descendant's value is closer
+    // to key than candidate's value
+    if (candidate == nullptr || abs(descendant -> key - key) < abs(ancestor -> key - key))
+        return descendant;
+    return candidate;
 }
 
 void XFastTrie::prettyPrint() {
