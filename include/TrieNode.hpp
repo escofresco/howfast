@@ -13,8 +13,18 @@
 class TrieNode {
 public:
     int key;
-    bool isLeaf; // Property indicated by if node is at bottom of tree (it may still have a left and right)
+    
+    // Property indicated by if node is at bottom of tree (it may still have a left and right)
+    bool isLeaf;
+    
+    // If isLeaf is true, then this stores the node's predecessor. Else the node is a summary
+    // (internal) node, which means if it would be missing a left child, then it stores
+    // the smallest leaf in its right subtree.
     TrieNode* left;
+    
+    // If isLeaf is true, then this stores the node's successor. Else the node is a summary
+    // (internal) node, which means if it would be missing a right child, then it stores
+    // the largest leaf in its left subtree.
     TrieNode* right;
     
     //TrieNode(int key);
