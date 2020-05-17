@@ -397,14 +397,14 @@ TEST_F(XFastTest, NearestLeafImbalancedTrie) {
     // ~> Test nearest leaves of exact queries
     TrieNode* nearestLeafOf0 = imbalancedTrie -> nearestLeaf(0);
     TrieNode* nearestLeafOf1 = imbalancedTrie -> nearestLeaf(1);
-//    
-//    EXPECT_EQ(nearestLeafOf0 -> key, 0);
-//    EXPECT_TRUE(nearestLeafOf0 -> isLeaf);
-//    EXPECT_EQ(nearestLeafOf0, nearestLeafOf0);
-//    
-//    EXPECT_EQ(nearestLeafOf1 -> key, 1);
-//    EXPECT_TRUE(nearestLeafOf1 -> isLeaf);
-//    EXPECT_EQ(nearestLeafOf1, nearestLeafOf1);
+    
+    EXPECT_EQ(nearestLeafOf0 -> key, 0);
+    EXPECT_TRUE(nearestLeafOf0 -> isLeaf);
+    EXPECT_EQ(nearestLeafOf0, nearestLeafOf0);
+    
+    EXPECT_EQ(nearestLeafOf1 -> key, 1);
+    EXPECT_TRUE(nearestLeafOf1 -> isLeaf);
+    EXPECT_EQ(nearestLeafOf1, nearestLeafOf1);
     
     // ~> Test nearest leaves of inexact queries
     TrieNode* nearestLeafOf2 = imbalancedTrie -> nearestLeaf(2);
