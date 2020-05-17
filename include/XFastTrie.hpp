@@ -97,7 +97,7 @@ public:
      * @param key The key to find the closest ancestor to.
      * @return A pair containing the level of the closest ancestor and the node corresponding to that ancestor.
      */
-    std::pair<int, TrieNode*> closestAncestor(int key);
+    std::pair<int, TrieNode*> nearestAncestor(int key);
     
     /**
      * Finds the leaf with a key nearest in value to the given key.
