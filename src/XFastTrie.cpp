@@ -22,7 +22,6 @@ XFastTrie::XFastTrie(int universeSize) {
     levelSearchStructure[0][0] = new TrieNode(NULL); // Root of tree is always empty.
 }
 
-
 int XFastTrie::numberOfBitsInWord(int word) {
     // Calculate number of bits in word
     int nBits = 0;
@@ -35,10 +34,10 @@ int XFastTrie::numberOfBitsInWord(int word) {
 }
 
 TrieNode* XFastTrie::find(int key) {
-    if (levelSearchStructure.empty() || levelSearchStructure[0].count(key) == 0)
+    if (levelSearchStructure.empty() || levelSearchStructure[wordSize].find(key) == levelSearchStructure[wordSize].end())
         // key doesn't exist
         return nullptr;
-    return levelSearchStructure[0][key];
+    return levelSearchStructure[wordSize][key];
 }
 
 TrieNode* XFastTrie::predecessor(int key) {
@@ -64,6 +63,89 @@ TrieNode* XFastTrie::successor(int key) {
 }
 
 void XFastTrie::insert(int key) {
+    
+    if (find(key))
+        // Exit early if key already exists
+        return;
+    
+    // ~> Find the predecessor and successor of key and then put key in between them.
+    TrieNode* left = predecessor(key);
+    TrieNode* right = successor(key);
+    
+    // Create the node to insert
+    TrieNode* leaf = new TrieNode(key, left, right);
+    
+    // ~> Put leaf in between left and right
+    if (left)
+        left -> right = leaf;
+    
+    if (right)
+        right -> left = leaf;
+    
+    // ~> Update global min and max
+    if (globalMin == NAN)
+        globalMin = key;
+    globalMin = std::min(globalMin, key);
+    
+    if (globalMax == NAN)
+        globalMax = key;
+    globalMax = std::max(globalMax, key);
+    
+    // ~> Walk down tree from leaf to root and create summary nodes if they don't exist
+    for (int level = 1; level < wordSize; level++) {
+        int prefix = key >> (wordSize - level);
+        
+        if (levelSearchStructure[level].find(prefix) == levelSearchStructure[level].end()) {
+            // ~> Prefix doesn't exist in level, so create node for it
+            // Create the node to insert
+            TrieNode* summaryNode = new TrieNode(key);
+            int parentPrefix = prefix >> 1;
+            
+            // Add summary node to search structure
+            levelSearchStructure[level][prefix] = summaryNode;
+            
+            if (prefix & 1)
+                // Prefix is the right leg if its parent, assign summary node to parent's right
+                levelSearchStructure[level - 1][parentPrefix] -> right = summaryNode;
+            else
+                levelSearchStructure[level - 1][parentPrefix] -> left = summaryNode;
+        }
+    }
+    
+    // Place leaf into tree
+    levelSearchStructure[wordSize][key] = leaf;
+    int parentPrefix = key >> 1;
+    
+    // Assign leaf (the node to ultimately be inserted) as a child of its expected parent
+    if (key & 1)
+        // Key is on the right leg of its parent
+        levelSearchStructure[wordSize - 1][parentPrefix] -> right = leaf;
+    else
+        // Key is on the left leg of its parent
+        levelSearchStructure[wordSize - 1][parentPrefix] -> left = leaf;
+    
+    // ~> Walk up the tree from leaf and update descendant pointers
+    int prefix = key;
+    
+    for (int level = wordSize - 1; level > 0; level--) {
+        prefix >>= 1;
+        
+        if (levelSearchStructure[level][prefix] -> left == nullptr)
+            // Left pointer of prefix isn't set
+            // Set the leftmost leaf of the right subtree to prefix node's left
+            levelSearchStructure[level][prefix] -> left = leftmostLeaf(levelSearchStructure[level][prefix] -> right, level + 1);
+        else if (levelSearchStructure[level][prefix] -> right == nullptr)
+            // Right pointer of prefix isn't set
+            // Set the rightmost leaf of the left subtree to prefix node's right
+            levelSearchStructure[level][prefix] -> right = rightmostLeaf(levelSearchStructure[level][prefix] -> left, level + 1);
+    }
+    
+    // ~> Set left and right pointers of root
+    if (levelSearchStructure[0][0] -> left)
+        levelSearchStructure[0][0] -> left = leftmostLeaf(levelSearchStructure[0][0] -> left, 1);
+    
+    if (levelSearchStructure[0][0] -> right)
+        levelSearchStructure[0][0] -> right = rightmostLeaf(levelSearchStructure[0][0] -> right, 1);
 }
 
 void XFastTrie::deleteKey(int key) {
@@ -163,5 +245,33 @@ void XFastTrie::prettyPrint() {
     newRoot -> prettyPrint();
 }
 
+TrieNode* XFastTrie::leftmostLeaf(TrieNode* node, int level) {
+    
+    while (level < wordSize) {
+        // Search through node's subtree until we get to the bottom
+        
+        if (node -> left)
+            node = node -> left;
+        else
+            node = node -> right;
+        level++;
+    }
+    return node;
+}
+
+TrieNode* XFastTrie::rightmostLeaf(TrieNode* node, int level) {
+    while (level < wordSize) {
+        // Search through node's subtree until we get to the bottom
+
+        if (node -> right)
+            node = node -> right;
+        else
+            node = node -> left;
+        level++;
+    }
+    return node;
+}
+
 XFastTrie::~XFastTrie(){
+    // Teardown
 }

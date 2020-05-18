@@ -28,10 +28,10 @@ class XFastTrie {
 public:
     
     // The largest value that can be stored in tree (universe)
-    int universeSize;
+    int universeSize = NAN;
     
     // The maximum number of bits that can be stored
-    int wordSize;
+    int wordSize = NAN;
     
     // Root node maintains structure of tree but doesn't contain data
     TrieNode* root;
@@ -40,6 +40,9 @@ public:
     // that level.
     // TODO: Use dynamic-perfect hashing such as cuckoo hashing or hopscotch hashing.
     std::vector<std::unordered_map<int, TrieNode*>> levelSearchStructure;
+    
+    int globalMin = NAN;
+    int globalMax = NAN;
     
     static int numberOfBitsInWord(int word);
     
@@ -108,15 +111,27 @@ public:
     TrieNode* nearestLeaf(int key);
     
     /**
-     Get the level search structure.
-     
-     @return The reference to the level search structure.
-     */
-    
-    /**
      * Visualize the tree to the console.
      */
     void prettyPrint();
+    
+    /**
+     * Find the lefmost leaf of the given node's subtree.
+     *
+     * @param node The tree node to search in.
+     * @param level The level of the node being searched.
+     * @return The leaf in node's subtree farthest to the left.
+    */
+    TrieNode* leftmostLeaf(TrieNode* node, int level);
+    
+    /**
+     * Find the rightmost leaf of the given node's subtree.
+     *
+     * @param node The tree node to search in.
+     * @param level The level of the node being searched.
+     * @return The leaf in the node's subtree farthest to the right.
+     */
+    TrieNode* rightmostLeaf(TrieNode* node, int level);
     
     ~XFastTrie();
 };
