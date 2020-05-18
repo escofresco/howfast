@@ -64,7 +64,7 @@ protected:
             {7, tinyChild7},
         }));
         
-        tinyTrie = new XFastTrie(8);
+        //tinyTrie = new XFastTrie(8);
         tinyTrie -> levelSearchStructure = lss;
         
         
@@ -160,7 +160,11 @@ protected:
         imbalancedTrie -> levelSearchStructure = imbalancedLss;
     }
 
-    // void TearDown() override {}
+    void TearDown() override {
+        //delete tinyTrie;
+        delete fullTrie;
+        delete imbalancedTrie;
+    }
     
     XFastTrie* tinyTrie;
     XFastTrie* fullTrie;
@@ -497,3 +501,36 @@ TEST(NumberOfBitsInWordTest, SmallWords) {
     EXPECT_EQ(XFastTrie::numberOfBitsInWord(std::stoi("101", 0, 2)), 3);
 }
 
+TEST_F(XFastTest, InsertTinyTrie) {
+    XFastTrie tinyTrie2(8);
+    
+    tinyTrie2.insert(0);
+    EXPECT_NE(tinyTrie2.find(0), nullptr);
+    EXPECT_EQ(tinyTrie -> find(0) -> key, 0);
+    EXPECT_EQ(tinyTrie2.predecessor(0) -> key, 0);
+    EXPECT_EQ(tinyTrie2.successor(0) -> key, 0);
+    EXPECT_EQ(tinyTrie2.predecessor(1) -> key, 0);
+    
+    XFastTrie trie(8);
+    trie.insert(0);
+//    EXPECT_EQ(tinyTrie2 -> successor(1), nullptr);
+//    EXPECT_EQ(tinyTrie2 -> predecessor(2) -> key, 0);
+//    EXPECT_EQ(tinyTrie2 -> successor(2) -> key, nullptr);
+//    EXPECT_EQ(tinyTrie2 -> predecessor(0) -> key, 0);
+//    EXPECT_EQ(tinyTrie2 -> successor(0) -> key, 0);
+//    EXPECT_EQ(tinyTrie2 -> predecessor(0) -> key, 0);
+//    EXPECT_EQ(tinyTrie2 -> successor(0) -> key, 0);
+//    EXPECT_EQ(tinyTrie2 -> predecessor(0) -> key, 0);
+//    EXPECT_EQ(tinyTrie2 -> successor(0) -> key, 0);
+    
+    
+    tinyTrie2.insert(1);
+    tinyTrie2.insert(3);
+    tinyTrie2.prettyPrint();
+    
+    std::cout << ' ';
+//    for (int i = 0; i < 8; i++)
+//        std::cout << ' '<< tinyTrie2 -> levelSearchStructure[8].find(i);
+//    std::cout << '\n';
+    //EXPECT_EQ(tinyTrie2 -> predecessor(<#int key#>), <#val2#>)
+}
